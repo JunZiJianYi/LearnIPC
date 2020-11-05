@@ -1,0 +1,73 @@
+apply from: "${rootProject.rootDir}/config.gradle"
+if (Boolean.valueOf(rootProject.ext.moduleAidlClient)) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    project.ext.setDefaultConfig project
+
+
+    defaultConfig {
+        //Arouter路由配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+
+    }
+
+    sourceSets {
+        main {
+            if (rootProject.ext.moduleAidlClient) {
+                manifest.srcFile 'src/main/aloneManifest/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    //排除java/debug文件夹下的所有文件
+                    exclude '*module'
+                }
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+
+    implementation project(':baseLib:baseProject')
+
+
+    //黄油刀
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    api "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+
+
+    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompilerVersion"
+    api "com.alibaba:arouter-api:$rootProject.arouterApiVersion"
+    api "com.alibaba:arouter-annotation:$rootProject.arouterAnnotation"
+
+
+
+}

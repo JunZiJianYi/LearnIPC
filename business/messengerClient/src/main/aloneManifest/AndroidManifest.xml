@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.messenger">
+
+    <application
+        android:name=".runAlone.SupAppLicationg"
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 今日头条适配方案 -->
+        <!-- 如果您项目中的所有页面都只需要以高或宽中的一个作为基准进行适配的话, 那就只需要填写高或宽中的一个设计图尺寸即可 -->
+        <!-- value 的单位为dp,计算方式:1600px / (480/160) = 360dp,公式:dp*(ppi/160) = px; -->
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="460" />
+    </application>
+
+</manifest>

@@ -1,0 +1,1 @@
+include ':app', ':baseLib:baseProject', ':business:navigation', ':business:messengerClient', ':business:messengerServer', ':business:aidlClient', ':business:aidlServer'

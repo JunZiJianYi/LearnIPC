@@ -1,0 +1,94 @@
+apply from: "${rootProject.rootDir}/config.gradle"
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    project.ext.setDefaultConfig project
+    defaultConfig {
+        applicationId rootProject.ext.applicationId
+
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+
+        //MultiDex分包方法
+        multiDexEnabled true
+
+        //Arouter路由配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+
+        //目录指向配置
+        sourceSets {
+            //设置依赖so库路径
+            main.jniLibs.srcDirs = ['libs']
+        }
+
+        ndk {
+            // 设置支持的SO库架构(cpu)
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+
+    }
+
+    signingConfigs {
+
+        debug {
+            keyAlias '北京建设数字'
+            keyPassword '511314'
+            storeFile file('D:\\work\\ecaMobileGis.jks')
+            storePassword '511314'
+        }
+        release {
+            keyAlias '北京建设数字'
+            keyPassword '511314'
+            storeFile file('D:\\work\\ecaMobileGis.jks')
+            storePassword '511314'
+        }
+    }
+
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':baseLib:baseProject')
+
+    //是否模块独立运行
+    if (!rootProject.ext.isRunAlone) {
+        implementation project(':business:navigation')
+        implementation project(':business:messengerClient')
+    }
+
+    //PushSDK必须依赖基础组件库，所以需要加入对应依赖
+    implementation 'com.umeng.umsdk:common:2.1.0'
+    //PushSDK必须依赖utdid库，所以需要加入对应依赖
+    implementation 'com.umeng.umsdk:utdid:1.1.5.3'
+    //PushSDK
+    implementation 'com.umeng.umsdk:push:6.0.1'
+    //华为Push通道
+    implementation 'com.umeng.umsdk:huawei-basetb:2.6.3.305'
+    implementation 'com.umeng.umsdk:huawei-pushtb:2.6.3.305'
+    implementation 'com.umeng.umsdk:huawei-umengaccs:1.2.1'
+    //小米Push通道
+    implementation 'com.umeng.umsdk:xiaomi-push:3.6.17'
+    implementation 'com.umeng.umsdk:xiaomi-umengaccs:1.1.0'
+    //魅族Push通道
+    implementation 'com.umeng.umsdk:meizu-push:3.8.1'
+    implementation 'com.umeng.umsdk:meizu-umengaccs:1.0.6'
+
+}

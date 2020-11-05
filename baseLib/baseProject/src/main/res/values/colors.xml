@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="baseProject_theme">#0077E6</color>
+    <color name="baseProject_transparent">#00000000</color>
+    <color name="baseProject_white">#FFFFFF</color>
+    <color name="baseProject_gray">#BBBBBB</color>
+    <color name="baseProject_red">#FF0000</color>
+    <color name="baseProject_blue">#0099FF</color>
+    <color name="baseProject_black">#000000</color>
+    <color name="baseProject_orange">#FFA82E</color>
+    <color name="baseProject_bg">#eeeff3</color>
+    <color name="baseProject_yellow">#ff8000</color>
+    <color name="baseProject_light_white">#eeeeee</color>
+    <color name="baseProject_light_blue">#E1FFFF</color>
+    <color name="baseProject_light_yellow">#F0E68C</color>
+    <color name="baseProject_light_green">#7FFF00</color>
+
+</resources>

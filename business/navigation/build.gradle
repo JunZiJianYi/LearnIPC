@@ -1,0 +1,64 @@
+apply from: "${rootProject.rootDir}/config.gradle"
+if (Boolean.valueOf(rootProject.ext.moduleNavigation)) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    project.ext.setDefaultConfig project
+
+
+    defaultConfig {
+        //Arouter路由配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+
+        //强制前缀
+        resourcePrefix "navigation_"
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            if (rootProject.ext.moduleNavigation) {
+                manifest.srcFile 'src/main/aloneManifest/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    //排除java/debug文件夹下的所有文件
+                    exclude '*module'
+                }
+            }
+        }
+    }
+
+}
+
+dependencies {
+   implementation fileTree(dir: 'libs', include: ['*.jar'])
+    
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    implementation "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+
+    implementation project(':baseLib:baseProject')
+
+
+}

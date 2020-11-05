@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/et_number1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="Number 1(数字1)"
+        android:inputType="number"
+        android:maxLength="9"
+        ></EditText>
+
+    <EditText
+        android:id="@+id/et_number2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_number1"
+        android:layout_marginTop="50dp"
+        android:hint="Number 1(数字1)"
+        android:inputType="number"
+        android:maxLength="9"
+        ></EditText>
+
+    <Button
+        android:id="@+id/bt_add"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/et_number2"
+        android:text="Add Number(两数添加之和)"
+
+        ></Button>
+
+
+    <TextView
+        android:id="@+id/tv_number_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_below="@id/bt_add"
+        android:text="Add Number Show(两数之和展示)："
+        ></TextView>
+
+
+</RelativeLayout>

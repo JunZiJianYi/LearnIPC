@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.WelcomeActivity">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/welcome"/>
+
+        <com.stx.xhb.androidx.XBanner
+            android:id="@+id/xbWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:isAutoPlay="false"
+            app:isShowIndicatorOnlyOne="true"
+            app:pageChangeDuration="800"
+            app:pointNormal="@drawable/navigation_shape_noraml"
+            app:pointSelect="@drawable/navigation_shape_selected"
+            app:pointsContainerBackground="#44aaaaaa"
+            app:pointsPosition="CENTER"
+            app:tipTextSize="12sp"
+            app:isClipChildrenMode="false"
+            app:pointsVisibility="false"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
